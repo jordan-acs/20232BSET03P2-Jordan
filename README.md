@@ -11,11 +11,11 @@ O arquivo gera um banco de dados temporário usando o SQLITE3 a cada vez que o s
 <br>
 Para solicionar esse problema, foi adicionada a tag `IF NOT EXISTS` ao comando de criação do database, para permitir a a criação de um novo banco de dados somente se um antigo não existir.
 
-##Problema ao gerar ID's
+## Problema ao gerar ID's
 
 Ao serem criadas novas tabelas, o atributo id não é configurado para representar um valor único que se auto incrementa, gerando assim problemas de consistências na geração de vários id's. 
 <br>
-Para solucionar esse problema, foi adicionado a tag `PRIMARY KEY` ao comando, pois esse incrmento permitir definir o atributo id a partir dos atributos citados anteriormente e garantir a consistência dessa propriedade entre as demais linhas.
+Para solucionar esse problema, foi adicionado a tag `PRIMARY KEY` ao comando, pois esse incremento permite definir o atributo id a partir dos atributos citados anteriormente e garantir a consistência dessa propriedade entre as demais linhas.
 ```
 db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS cats (id INTEGER PRIMARY KEY, name TEXT, votes INTEGER)");
@@ -57,9 +57,9 @@ app.post('/cats', (req, res) => {
 ```
 ## Voto sem registro de animal
 
-O endpoint `/vote/:animalType/:id` realiza a inserção de votos em animais do banco de dados com base no tipo de animal, podendo ser esse cachorro ou gato, e em seu número de identificação. Porém não existe nenhum algorítimo que valide se o o tipo de animal é valido ou se ele realmente existe na tabela, abrindo margem de erro para que animais não cadastrados em nenhuma das tabelas recebam votoss. 
+O endpoint `/vote/:animalType/:id` realiza a inserção de votos em animais do banco de dados com base no tipo de animal, podendo ser esse cachorro ou gato, e em seu número de identificação. Porém não existe nenhum algorítimo que valide se o tipo de animal é valido ou se ele realmente existe na tabela, abrindo margem de erro para que animais não cadastrados em nenhuma das tabelas recebam votoss. 
 <br>
-Dessa forma, foi adicionado uma estrutura condicional de verificação que gerencia se a espécie d animal é verdadeira e se ele relamente existe na tabela.
+Dessa forma, foi adicionado uma estrutura condicional de verificação que gerencia se a espécie do animal é verdadeira e se ele realmente existe na tabela.
 
 Antigo:
 ```
@@ -134,7 +134,7 @@ app.get('/cats', (req, res) => {
 
 ## Assinaturas de código vazias
 
-Ao longo do código, alguns endimpoints foram declarados mas não foram devidamente preenchidos, impossibilitando sua execução
+Ao longo do código, alguns endpoints foram declarados mas não foram devidamente preenchidos, impossibilitando sua execução
 <br>
 Dessa forma, foram preenchidos os trechos de código vazios com base em endpoints semelhantes que utilizam a mesma lógica de funcionamento.
 
